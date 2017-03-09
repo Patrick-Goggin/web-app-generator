@@ -1,0 +1,44 @@
+
+<table class="table table-striped table-hover" id="table">
+    <thead id="table-head">
+    <tr>
+        <th>#</th>
+        <th id="table-head-name">Name</th>
+        <th>Provider</th>
+        <!--<th>Website</th>-->
+        <!--<th>Price</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="aTheme in list | orderBy: 'name'" ng-cloak class="table-row" ng-class="[{ 'selected-class-name': $index == selectedIndex}, set_color(aTheme)]">
+        <td>
+            <div class="btn-group">
+                <a class="dropdown-toggle btn btn-xs" ng-class="button_color(aTheme)" data-toggle="dropdown" href="#" id="themes"><span class="caret"></span></a>
+                <ul class="dropdown-menu" aria-labelledby="themes">
+                    <li><a href="#" ng-click="viewDetails(aTheme);">Details</a></li>
+                    <li><a data-toggle="modal" href="#edit-modal" ng-click="editThing(aTheme)">Edit</a></li>
+                    <li><a ng-click="deleteThing(thingDetails)">Delete</a></li>
+                </ul>
+                {{$index+1}}
+            </div>
+        </td>
+        <td>
+            <a id="{{aTheme.name + '_' + aTheme.id}}" class="details-link" ng-click="itemClicked($index, aTheme); viewDetails(aTheme);">
+                {{aTheme.name}}
+            </a>
+        </td>
+        <td>{{aTheme.provider}}</td>
+        <!--<td>{{aTheme.website}}</td>-->
+        <!--<td><span ng-bind="checkPrice(aTheme)"></span></td>-->
+    </tr>
+    <tr ng-cloak class="table-row active" >
+        <td>
+            <a class="btn btn-xs btn-success" data-toggle="modal" href="#add-theme-modal"><strong>+</strong></a>
+        </td>
+        <td></td>
+        <td></td>
+        <!--<td></td>-->
+        <!--<td></td>-->
+    </tr>
+    </tbody>
+</table>

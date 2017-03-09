@@ -1,0 +1,38 @@
+<div ng-show="summary">
+        <ul class="list-group">
+    <li class="list-group-item">
+        <h1 id="pageTitle" class="list-group-item-heading">Project Summary</h1>
+        <li class="list-group-item">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h2 class="list-group-item-heading info">{{summary.name}}</h2><br>
+        <li>
+        <li class="list-group-item">
+        <ul class="list-group">
+        <h3 class="list-group-item-heading">Database Entities</h3>
+            <li class="list-group-item" ng-repeat="entity in summary.entities">
+                <h4 class="list-group-item-heading info">{{entity.name}}</h4>
+                <h5>Properties</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="property in entity.propertyList">
+                        <ul>
+                            <li>
+                                Type: {{property.type}}
+                            </li>
+                            <li>
+                                Name: {{property.name}}
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+               </li>
+        </li>
+        </li>
+    </ul>
+        </li>
+        </li>
+        </ul>
+<button id="makeProjectButton" class="btn btn-success btn-lg">Make Project</button>
+</div>

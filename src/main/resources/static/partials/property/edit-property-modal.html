@@ -1,0 +1,39 @@
+<div class="modal fade" id="edit-property-modal" ng-controller="PropertyController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Property Form</h4>
+            </div>
+            <div class="modal-body">
+                <h1>{{currentProperty.name}}</h1>
+                <form id="edit-property-form" name="edit-property-form" novalidate>
+                    <div class="form-group">
+                        <label for="new-property-type">Type:</label>
+                        <select id="new-property-type" name="new-property-type" class="form-control" ng-model="currentProperty.type">
+                            <option value="String">String</option>
+                            <option value="boolean">boolean</option>
+                            <option value="byte">byte</option>
+                            <option value="char">char</option>
+                            <option value="short">short</option>
+                            <option value="int">int</option>
+                            <option value="long">long</option>
+                            <option value="float">float</option>
+                            <option value="double">double</option>
+                            <option value="BigDecimal">BigDecimal</option>
+                            <option value="Date">Date</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-property-name">Name:</label>
+                        <input type="text" id="edit-property-name" name="edit-property-name" class="form-control" ng-model="currentProperty.name">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('No');" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="formButton" type="button" ng-click="update(currentProperty)" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

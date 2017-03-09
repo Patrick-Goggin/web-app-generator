@@ -1,0 +1,2 @@
+### Usage
+I've built a few apps using this group of technologies lately. The goal here is to build an application that automatically generates new applications, similar to itself, but with different DB entities and properties defined by the user via a GUI.

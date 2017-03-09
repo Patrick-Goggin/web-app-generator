@@ -1,0 +1,50 @@
+<div class="col-sm-10">
+<code>
+    <br>
+angular.module('app.services',[])<br>
+.factory('$global',['$http', '$rootScope', function($http, $rootScope){<br>
+return {
+    <br>
+</code>
+    <code ng-repeat="entity in currentProject.entities">
+// get{{entity.name | capitalize}}s<br>
+get{{entity.name | capitalize}}s : function(){<br>
+var li;<br>
+$http.get('/{{entity.name | lower}}s')<br>
+.then(function (response) {<br>
+if(response.data.length > 0){<br>
+$rootScope.{{entity.name | lower}}s = response.data;<br>
+return $rootScope.{{entity.name | lower}}s;<br>
+}<br>
+if(response.data.length < 1){<br>
+$rootScope.{{entity.name | lower}}s = null;<br>
+return $rootScope.{{entity.name | lower}}s;<br>
+}<br>
+});<br>
+},<br>
+    <br>
+// set{{entity.name | capitalize}}s<br>
+set{{entity.name | capitalize}}s : function(data){<br>
+$rootScope.{{entity.name | lower}}s = data;<br>
+return $rootScope.{{entity.name | lower}}s;<br>
+},<br>
+    <br>
+// get{{entity.name | capitalize}}<br>
+get{{entity.name | capitalize}} : function(){<br>
+return $rootScope.{{entity.name | lower}};<br>
+},<br>
+    <br>
+// set{{entity.name | capitalize}}<br>
+set{{entity.name | capitalize}} : function(data){<br>
+$rootScope.{{entity.name | lower}} = data;<br>
+return $rootScope.{{entity.name | lower}};<br>
+} ,
+        <br>
+        <br>
+</code>
+<code>
+
+};
+}]);
+</code>
+</div>

@@ -1,0 +1,42 @@
+<div class="modal fade" id="edit-theme-modal" ng-controller="ThemeController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h1>{{themeToEdit.name}}</h1>
+            </div>
+            <div class="modal-body">
+
+                <form id="edit-theme-form" name="edit-theme-form" novalidate>
+                    <div class="form-group">
+                        <label for="edit-theme-name">Name:</label>
+                        <input type="text" id="edit-theme-name" name="edit-theme-name" class="form-control" ng-model="themeToEdit.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-theme-cdn">CDN:</label>
+                        <input type="text" id="edit-theme-cdn" name="edit-theme-cdn" class="form-control" ng-model="themeToEdit.cdn">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-theme-provider">Provider:</label>
+                        <input type="text" id="edit-theme-provider" name="edit-theme-provider" class="form-control" ng-model="themeToEdit.provider">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-theme-website">Website:</label>
+                        <input type="text" id="edit-theme-website" name="edit-theme-website" class="form-control" ng-model="themeToEdit.website">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-theme-price">Price:</label>
+                        <input type="text" id="edit-theme-price" name="edit-theme-price" class="form-control" ng-model="themeToEdit.price">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-theme-description">Description:</label>
+                        <input type="text" id="edit-theme-description" name="edit-theme-description" class="form-control" ng-model="themeToEdit.description">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('No');" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="formButton" type="button" ng-click="updateTheme(themeToEdit)" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

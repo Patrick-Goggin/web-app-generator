@@ -1,0 +1,54 @@
+<table class="table table-striped table-hover" id="table">
+    <thead id="table-head">
+    <h2>Projects</h2>
+    <tr>
+        <th>#</th>
+        <th id="table-head-name">Name</th>
+        <th>Entities</th>
+        <th>Edit</th>
+        <!--<th></th>-->
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr ng-repeat="oneProject in projectList | orderBy: 'name'" ng-cloak class="table-row" ng-class="[{ 'selected-class-name': $index == selectedIndex}, set_color(oneProject)]">-->
+    <tr ng-repeat="oneProject in projects" ng-cloak class="table-row" ng-class="[{ 'selected-class-name': $index == selectedIndex}, set_color(oneProject)]"  ng-click="itemClicked($index, oneProject);">
+        <td>
+            {{$index+1}}
+        </td>
+        <td>
+            <!--<a id="{{oneProject.name + '_' + oneProject.id}}" class="details-link" ng-click="itemClicked($index, oneProject); viewDetails(oneProject);">-->
+            <a id="{{oneProject.name + '_' + oneProject.id}}" class="details-link" ng-click="details(oneProject)">
+                {{oneProject.name}}
+            </a>
+        </td>
+        <td>
+            <a class="btn btn-xs btn-primary" ng-click="details(oneProject)">
+                <i class="fa fa-database" aria-hidden="true"></i>
+            </a>
+        </td>
+        <!--<td>-->
+            <!--<div class="btn-group">-->
+                <!--<a class="dropdown-toggle btn btn-xs" ng-class="button_color(oneProject)" data-toggle="dropdown" href="#" id="projects"><span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="projects">-->
+                    <!--<li><a class="btn" href="#" ng-click="details(oneProject);">Details</a></li>-->
+                    <!--<li><a class="btn" data-toggle="modal" href="#edit-project-modal" ng-click="edit(oneProject)">Edit</a></li>-->
+                    <!--<li><a class="btn" ng-click="remove(oneProject)">Delete</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</td>-->
+        <td><span class="btn btn-xs btn-primary glyphicon glyphicon-pencil" data-toggle="modal" href="#edit-project-modal" ng-click="edit(oneProject)"></span></td>
+        <td><span class="btn btn-xs btn-danger glyphicon glyphicon-remove" ng-click="remove(oneProject)"></span></td>
+    </tr>
+    <tr ng-cloak class="table-row active" >
+        <td>
+            <a class="btn btn-xs btn-success" data-toggle="modal" href="#new-project-modal"><strong>+</strong></a>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!--<td></td>-->
+        <td></td>
+    </tr>
+    </tbody>
+</table>

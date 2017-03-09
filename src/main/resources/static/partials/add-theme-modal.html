@@ -1,0 +1,42 @@
+<div class="modal fade" id="add-theme-modal" ng-controller="ThemeController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New Theme Form</h4>
+            </div>
+            <div class="modal-body">
+                <h1>{{formTheme.name}}</h1>
+                <form id="add-theme-form" name="add-theme-form" novalidate>
+                    <div class="form-group">
+                        <label for="add-theme-name">Name:</label>
+                        <input type="text" id="add-theme-name" name="add-theme-name" class="form-control" ng-model="formTheme.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-theme-cdn">CDN:</label>
+                        <input type="text" id="add-theme-cdn" name="add-theme-cdn" class="form-control" ng-model="formTheme.cdn">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-theme-provider">Provider:</label>
+                        <input type="text" id="add-theme-provider" name="add-theme-provider" class="form-control" ng-model="formTheme.provider">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-theme-website">Website:</label>
+                        <input type="text" id="add-theme-website" name="add-theme-website" class="form-control"  ng-model="formTheme.website">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-theme-price">Price:</label>
+                        <input type="text" id="add-theme-price" name="add-theme-price" class="form-control"  ng-model="formTheme.price">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-theme-description">Description:</label>
+                        <input type="text" id="add-theme-description" name="add-theme-description" class="form-control" ng-model="formTheme.description">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('No');" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="formButton" type="button" ng-click="create(formTheme)" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

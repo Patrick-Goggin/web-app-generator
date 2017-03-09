@@ -1,0 +1,84 @@
+<div class="col-sm-10" ng-show="currentProject" ng-hide="!currentProject">
+<code>
+var Controllers = angular.module('Controllers', ['app.services']);<br>
+    </code>
+    <code ng-repeat="entity in currentProject.entities">
+Controllers.controller('PropertyController', ['$scope', '$http', '$rootScope','$global', function ($scope, $http, $rootScope, $global) {<br>
+        <br>
+$global.set{{entity.name | capitalize}}(null);<br>
+        <br>
+$scope.create = function({{entity.name | lower}}){<br>
+var entityId = $global.getCurrentEntity().id;<br>
+var toPost = {<br>
+        <br>
+<code ng-repeat="property in entity.propertyList"><br>
+{{property.name | lower}}: {{entity.name | lower}}.{{property.name | lower}},<br>
+</code><br>
+};<br>
+$http.post("/{{entity.name | lower}}", toPost)<br>
+.then(function(response){<br>
+$global.get{{entity.name | capitalize}}s();<br>
+});<br>
+}<br>
+        <br>
+$scope.edit = function({{entity.name | lower}}){<br>
+$global.set{{entity.name | capitalize}} ({{entity.name | lower}});<br>
+}<br>
+        <br>
+$scope.update = function({{entity.name | lower}}){<br>
+var toPatch = {<br>
+  <code ng-repeat="property in entity.propertyList"><br>
+id: {{entity.name | lower}}.{{property.name | lower}},<br>
+  </code><br>
+};<br>
+$http.patch("/{{property.name | lower}}", toPatch)<br>
+.then(function(response){<br>
+$scope.{{property.name | lower}} = null;<br>
+if (response.data == null) {<br>
+$scope.{{property.name | lower}} = null;<br>
+}<br>
+$global.get{{property.name | capitalize}}s();<br>
+});<br>
+}<br>
+        <br>
+$scope.remove = function({{property.name | lower}}){<br>
+var id = {{property.name | lower}}.id;<br>
+$http.delete('/{{property.name | lower}}/'+id)<br>
+.then(function (response) {<br>
+$global.set{{property.name | capitalize}}s(response.data);<br>
+$scope.{{property.name | lower}} = null;<br>
+$global.get{{property.name | capitalize}}s();<br>
+});<br>
+}<br>
+        <br>
+function resetForm(){<br>
+$scope.newProperty = {<br>
+  <code ng-repeat="property in entity.propertyList"><br>
+{{property.name}}: '',<br>
+  </code><br>
+};<br>
+}<br>
+
+<!--$scope.selectedIndex = -1;-->
+
+<!--$scope.itemClicked = function ($index, property) {-->
+<!--$scope.selectedIndex = $index;-->
+<!--}-->
+
+<!--$scope.details = function(property){-->
+<!--$global.setCurrentProperty(property);-->
+<!--$scope.currentProperty = $global.getCurrentProperty();-->
+<!--$scope.showDetails = true;-->
+<!--$scope.property = property;-->
+<!--}-->
+
+<!--$scope.toggleDetails = function(){-->
+<!--$scope.showDetails = !$scope.showDetails;-->
+<!--}-->
+
+<!--$scope.clearProperties = function(){-->
+<!--$global.setProperties(null);-->
+<!--}-->
+}]);<br><br><br><br>
+    </code>
+</div>

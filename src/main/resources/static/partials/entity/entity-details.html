@@ -1,0 +1,18 @@
+<div ng-hide="!showDetails" id="details-panel" ng-class="'panel-'+entity.c">
+    <div class="panel-heading">
+        <h1 class="panel-title">Entity Details</h1>
+    </div>
+    <div>
+        <h4>Project: {{currentProject.name}}</h4>
+        <h4 class="details-field">Name: <span ng-bind="entity.name"></span></h4>
+        <!--<div ng-include src="'partials/property/property-details.html'" ng-show="currentPro"></div>-->
+        <br>
+        <br>
+
+
+        <button class="details-link btn btn-sm btn-primary" ng-click="edit(entity)" data-toggle="modal" href="#edit-entity-modal">Edit</button>
+        <button class="details-link btn btn-sm btn-danger" ng-click="remove(entity)">Delete Project</button>
+        <button class="details-link btn btn-sm btn-primary" ng-click="toggleDetails()">Hide Details</button>
+    </div>
+</div>
+

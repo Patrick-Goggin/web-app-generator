@@ -1,0 +1,150 @@
+body{
+background-color:#F5F5F5;
+}
+
+a{
+cursor:pointer;
+}
+
+li{
+list-style-type: none;
+}
+
+#thingForm{
+max-width: 400px;
+}
+
+#thing-list{
+align: center;
+padding: 0;
+max-height: 80vh;
+overflow-y: auto;
+}
+
+#thing-list li{
+display: block;
+align: center;
+text-align: center;
+padding: 0;
+margin: 0;
+}
+
+.thing-in-list{
+align: center;
+text-align: left;
+padding: 0;
+position: relative;
+}
+
+#list-container{
+text-align: center;
+}
+
+.hide-section{
+float: right;
+}
+
+#delete-link{
+float:left;
+}
+
+#edit-link{
+float:left;
+}
+
+.details-field{
+text-align:left;
+}
+
+#container{
+padding-top:10px;
+padding-left:0px;
+margin-left:0px;
+width:100%;
+}
+
+#nav{
+margin-bottom:40px;
+}
+
+#thing-table{
+width:100%;
+float:left;
+}
+
+#table-head{
+border-top:1px solid #2C3E50;
+border-bottom:1px solid #2C3E50;
+}
+
+.details-link{
+display:inline;
+text-align:center;
+align:center;
+margin:5px;
+}
+
+#details-container{
+text-align:left;
+}
+
+#details-panel{
+width:100%;
+}
+
+#table-container{
+float:left;
+}
+
+#table-head-name{
+text-align:left;
+}
+
+.selected-class-name{
+    border-top:5px solid black;
+    border-bottom:5px solid black;
+}
+
+.inline-heading{
+display:inline;
+float:left;
+text-align:left !important;
+align:left !important;
+}
+#breadcrumbs a{
+color:white;
+}
+/*
+#entity-table{
+    float:left;
+    width:100%;
+}
+
+#entity-container{
+float:left;
+}
+
+#property-container{
+float:left;
+}
+
+#property-table{
+float:left;
+width:100%;
+height:auto;
+}
+*/
+
+.data-summary{
+font-size:75%;
+float:left;
+padding-left:50px;
+}
+
+#projectInfo{
+padding:50px;
+}
+
+.preview{
+padding:50px;
+}

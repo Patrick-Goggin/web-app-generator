@@ -1,0 +1,27 @@
+<!--<div ng-hide="!showDetails" id="details-panel" class="panel" ng-class="'panel-'+oneProject.c">-->
+    <div id="details-panel" class="panel panel-default" ng-class="'panel-'+oneProject.c">
+    <div class="panel-heading">
+        <h1 class="panel-title" id="breadcrumbs">Projects <span ng-show="currentProject">> <a ng-click="details(currentProject)">{{currentProject.name}}</a> > Entities</span><span ng-show="currentEntity"> > <a ng-click="details(currentEntity)">{{currentEntity.name}}</a> > Properties</span><span ng-show="currentProperty"> > <a ng-click="details(currentProperty)">{{currentProperty.name}}</a></span></h1>
+    </div>
+    <div class="panel-body">
+        <!--<h4 class="details-field">Name: <span ng-bind="oneProject.name"></span></h4>-->
+        <!--<br>-->
+
+        <!--<div ng-include src="'partials/project/project-list.html'" ng-show="!currentProject" ng-hide="currentProject"></div>-->
+        <!--<div ng-include src="'partials/entity/entity-table.html'" ng-show="!currentEntity" ng-hide="!currentProject" ></div>-->
+        <!--<div ng-include src="'partials/property/property-table.html'" ng-show="currentEntity" ng-hide="!currentEntity"></div>-->
+
+        <div ng-include src="'partials/project/project-list.html'" ng-show="showProjects" ng-hide="!showProjects"></div>
+        <div ng-include src="'partials/entity/entity-table.html'" ng-show="!properties" ng-hide="showProjects" ></div>
+        <div ng-include src="'partials/property/property-table.html'" ng-show="properties" ng-hide="!properties"></div>
+
+        <!--<div ng-include src="'partials/entity/entity-details.html'"></div>-->
+        <!--<h4>DatabaseEntities:</h4>-->
+        <!--<div ng-include src="'partials/entity/entity-table.html'"></div>-->
+        <!--<div ng-include src="'partials/entity/entity-table.html'"></div>-->
+        <button class="details-link btn btn-sm btn-primary" ng-click="edit(oneProject)" data-toggle="modal" href="#edit-project-modal">Edit</button>
+        <button class="details-link btn btn-sm btn-danger" ng-click="remove(oneProject)">Delete Project</button>
+        <button class="details-link btn btn-sm btn-primary" ng-click="toggleDetails()">Hide Details</button>
+    </div>
+</div>
+

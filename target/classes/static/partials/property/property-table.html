@@ -1,0 +1,86 @@
+<!--<div id="property-table-container" ng-controller="PropertyController">-->
+<div ng-controller="PropertyController" ng-hide="!properties">
+<h4><a ng-click="clearProperties()"><< Back</a></h4>
+    <table class="table table-striped table-hover" id="property-table" >
+        <thead id="table-head">
+        <h2>{{currentEntity.name}}</h2>
+        <h2>Properties</h2>
+        <!--<h3>{{newProperties}}</h3>-->
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th id="table-head-name">Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="property in properties" ng-cloak class="table-row" ng-class="[{ 'selected-class-name': $index == selectedIndex}]">
+            <td>
+                {{$index+1}}
+            </td>
+            <td>
+                {{property.type}}
+            </td>
+            <td>
+                <a id="{{property.name + '_' + property.id}}" class="details-link" ng-click="itemClicked($index, property); details(property);">
+                    {{property.name}}
+                </a>
+            </td>
+            <!--<td>-->
+                <!--<div class="btn-group">-->
+                    <!--<a class="dropdown-toggle btn btn-xs" ng-class="button_color(property)" data-toggle="dropdown" href="#" id="properties"><span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu" aria-labelledby="properties">-->
+                        <!--<li><a class="btn" href="#" ng-click="details(property);">Details</a></li>-->
+                        <!--<li><a class="btn" data-toggle="modal" href="#edit-property-modal" ng-click="edit(property)">Edit</a></li>-->
+                        <!--<li><a class="btn" ng-click="remove(property)">Delete</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</td>-->
+            <!--<td><span class="btn btn-xs btn-danger glyphicon glyphicon-keys"></span><span class="halflings halflings-key"></span></td>-->
+            <td><span class="btn btn-xs btn-info glyphicon glyphicon-pencil" data-toggle="modal" href="#edit-property-modal" ng-click="edit(property)"></span></td>
+            <td><span class="btn btn-xs btn-danger glyphicon glyphicon-remove" ng-click="remove(property)"></span></td>
+        </tr>
+        <tr ng-repeat="property in newProperties" ng-show="newProperties">
+            <td>
+                {{$index+1}}
+            </td>
+            <td>
+                    <label for="new-property-type">Type:</label>
+                    <select id="new-property-type" name="new-property-type" class="form-control" ng-model="property.type">
+                        <option value="boolean">boolean</option>
+                        <option value="byte">byte</option>
+                        <option value="char">char</option>
+                        <option value="short">short</option>
+                        <option value="int">int</option>
+                        <option value="long">long</option>
+                        <option value="float">float</option>
+                        <option value="double">double</option>
+                        <option value="String">String</option>
+                        <option value="BigDecimal">BigDecimal</option>
+                        <option value="Date">Date</option>
+                    </select>
+            </td>
+            <td>
+                <label for="new-property-name">Name:</label>
+                <input type="text" id="new-property-name" name="new-property-name" class="form-control" ng-model="property.name">
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr ng-cloak class="table-row active">
+            <td>
+                <a class="btn btn-xs btn-success" ng-click="addProperty();"><strong>+</strong></a>
+                <!--<a class="btn btn-xs btn-success" data-toggle="modal" href="#new-property-modal"><strong>+</strong></a>-->
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <!--<td></td>-->
+            <!--<td></td>-->
+            <td><a ng-hide="!newProperties" class="btn btn-xs btn-success" ng-click="createMultiple(newProperties);"><strong>Create Properties</strong></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--</div>-->

@@ -1,0 +1,283 @@
+<div class="row">
+    <div class="col-sm-9 data-summary" ng-hide="!currentProject" ng-show="currentProject">
+        currentProject name: {{currentProject.name}}<br>
+        # of entities: {{currentProject.entities.length}}<br>
+        Entities:
+        <li>
+            <li ng-repeat="entity in currentProject.entities">
+                <code>
+/* START {{entity.name | capitalize}}.java (DTO class) */
+                    <br>
+                    <br>
+                    package application.models;<br>
+                    import com.fasterxml.jackson.annotation.JsonProperty;<br>
+                    import com.fasterxml.jackson.databind.annotation.JsonSerialize;<br>
+                    import lombok.Data;<br>
+                    import javax.persistence.Column;<br>
+                    import javax.persistence.Entity;<br>
+                    import javax.persistence.GeneratedValue;<br>
+                    import javax.persistence.Id;<br>
+                    import java.io.Serializable;<br>
+                    import java.util.ArrayList;<br>
+                    import java.util.HashMap;<br>
+                    import java.util.List;
+                    <br>
+                    <br>
+                    @Entity<br>
+                    @Data<br>
+                    public class {{entity.name}} implements Serializable{
+                    <br>
+                    <br>
+                    @Id<br>
+                    @GeneratedValue<br>
+                    private<br>
+                    Long id;
+                    <br>
+                    <br>
+                </code>
+                <code ng-repeat="property in entity.propertyList">
+                    @Column<br>
+                    private<br>
+                    {{property.type}} {{property.name | lower}};
+                    <br>
+                    <br>
+                </code>
+                <code>}</code>
+
+
+                <br><br>
+                <code>/* END OF FILE *//* END OF FILE *//* END OF FILE */</code>
+                <br><br><br><br>
+<code>
+                /* START {{entity.name | capitalize}}Controller.java (Controller class) */</code><br><br>
+                <code>
+                    package applications.controllers;<br>
+                    import org.springframework.beans.factory.annotation.Autowired;<br>
+                    import org.springframework.stereotype.Controller;<br>
+                    import org.springframework.web.bind.annotation.*;<br>
+                    import application.models.*;<br>
+                    import javax.servlet.http.HttpServletRequest;<br>
+                    import java.util.ArrayList;<br>
+                    import java.util.HashMap;<br>
+                    import java.util.HashSet;<br>
+                    import java.util.List;<br>
+                    import static com.sun.tools.doclets.formats.html.markup.HtmlStyle.summary;
+                    <br>
+                    <br>
+                    @Controller<br>
+                    @RequestMapping(&quot;/&quot;)<br>
+                    public class {{entity.name | capitalize}}Controller {<br>
+                    @Autowired<br>
+                    {{entity.name | capitalize}}Dao dao;
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}&quot;}, method = RequestMethod.POST)<br>
+                    @ResponseBody<br>
+                    public {{entity.name | capitalize}} create(@RequestBody {{entity.name | capitalize}} {{entity.name |
+                    lower}}, HttpServletRequest req) {<br>
+                    {{entity.name | capitalize}} toReturn = dao.create({{entity.name | lower}});<br>
+                    return toReturn;<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = &quot;/{{entity.name | lower}}/{id}&quot;, method = RequestMethod.GET)<br>
+                    @ResponseBody<br>
+                    public {{entity.name | capitalize}} getOne(@PathVariable(&quot;id&quot;) long id){<br>
+                    {{entity.name | capitalize}} {{entity.name | lower}} = dao.get(id);<br>
+                    return {{entity.name | lower}};<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}&quot;}, method = RequestMethod.POST)<br>
+                    @ResponseBody<br>
+                    public void createMultiple(@RequestBody Iterable<{{entity.name | capitalize}}> {{entity.name |
+                    lower}}s, HttpServletRequest req) {<br>
+                    dao.createMultiple({{entity.name | lower}}s);<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}s&quot;}, method = RequestMethod.GET)<br>
+                    public List<{{entity.name | capitalize}}> getAll(HttpServletRequest req) {<br>
+                    return dao.getAll();<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}&quot;}, method = RequestMethod.PATCH)<br>
+                    @ResponseBody<br>
+                    public {{entity.name | capitalize}} update(@RequestBody {{entity.name | capitalize}} {{entity.name |
+                    lower}}, HttpServletRequest req){<br>
+                    dao.update({{entity.name | lower}});<br>
+                    return dao.get({{entity.name | lower}}.getId());<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}&quot;}, method = RequestMethod.DELETE)<br>
+                    @ResponseBody<br>
+                    public List<{{entity.name | capitalize}}> deleteAll(HttpServletRequest req){<br>
+                    dao.deleteAll();<br>
+                    return new ArrayList<{{entity.name | capitalize}}>();<br>
+                    }
+                    <br>
+                    <br>
+                    @RequestMapping(value = {&quot;/{{entity.name | lower}}/{id}&quot;}, method =
+                    RequestMethod.DELETE)<br>
+                    @ResponseBody<br>
+                    public List<{{entity.name | capitalize}}> delete(HttpServletRequest req, @PathVariable(&quot;id&quot;)
+                    String id){<br>
+                    dao.delete(Long.parseLong(id));<br>
+                    return dao.getAll();<br>
+                    }<br>
+                    }
+                </code>
+
+
+                <br><br>
+                <code>/* END OF FILE *//* END OF FILE *//* END OF FILE */</code>
+                <br><br><br><br>
+
+
+                <code>/* START {{entity.name | capitalize}}Dao.java (DAO class) */</code><br><br>
+                <code>
+                    package application.models;<br>
+                    <br>
+                    import org.springframework.beans.factory.annotation.Autowired;<br>
+                    import org.springframework.stereotype.Component;<br>
+                    import javax.persistence.EntityManager;<br>
+                    import javax.persistence.PersistenceContext;<br>
+                    import javax.transaction.Transactional;<br>
+                    import java.util.HashMap;<br>
+                    import java.util.List;
+                    <br>
+                    <br>
+                    @Component<br>
+                    @Transactional<br>
+                    public class {{entity.name | capitalize}}Dao {<br>
+                    @PersistenceContext<br>
+                    private EntityManager entityManager;<br>
+                    <br>
+                    @Autowired<br>
+                    {{entity.name | capitalize}}Repository repo;
+                    <br>
+                    <br>
+                    public {{entity.name | capitalize}} create({{entity.name | capitalize}} {{entity.name |
+                    lower}}){<br>
+                    repo.save({{entity.name | lower}});<br>
+                    return {{entity.name | lower}};<br>
+                    }
+                    <br>
+                    <br>
+                    public void createMultiple(Iterable<{{entity.name | capitalize}}> {{entity.name | lower}}s){<br>
+                    repo.save({{entity.name | lower}}s);<br>
+                    }
+                    <br>
+                    <br>
+                    public List<{{entity.name | capitalize}}> getAll(){<br>
+                    List<{{entity.name | capitalize}}> list = repo.findAll();<br>
+                    return list;<br>
+                    }
+                    <br>
+                    <br>
+                    public {{entity.name | capitalize}} get(long id){<br>
+                    {{entity.name | capitalize}} {{entity.name | lower}} = repo.getOne(id);<br>
+                    return {{entity.name | lower}};<br>
+                    }
+                    <br>
+                    <br>
+                    public void update({{entity.name | capitalize}} {{entity.name | lower}}){<br>
+                    entityManager.merge({{entity.name | lower}});<br>
+                    }
+                    <br>
+                    <br>
+                    public {{entity.name | capitalize}} delete(long id){<br>
+                    {{entity.name | capitalize}} {{entity.name | lower}} = repo.getOne(id);<br>
+                    repo.delete(id);<br>
+                    return {{entity.name | lower}};<br>
+                    }
+                    <br>
+                    <br>
+                    public void deleteMultiple(Iterable<{{entity.name | capitalize}}> {{entity.name | lower}}s){<br>
+                    repo.deleteInBatch({{entity.name | lower}}s);<br>
+                    }
+                    <br>
+                    <br>
+                    public void deleteAll(){<br>
+                    repo.deleteAllInBatch();<br>
+                    }
+                    <br>
+                    <br>
+                    }<br>
+                </code>
+
+
+                <br><br>
+                <code>/* END OF FILE *//* END OF FILE *//* END OF FILE */</code>
+                <br><br><br><br>
+
+
+                <code>/* START {{entity.name | capitalize}}Repository.java (JPA Repository class) */</code>
+
+                <br>
+                <br>
+                <code>
+                    package application.models;<br>
+                    <br>
+                    import org.springframework.data.jpa.repository.JpaRepository;<br>
+                    import org.springframework.stereotype.Repository;
+                    <br>
+                    <br>
+                    @Repository<br>
+                    public interface {{entity.name | capitalize}}Repository extends JpaRepository<{{entity.name |
+                    capitalize}}, Long> {<br>
+                    }<br>
+                </code>
+
+
+                <br><br>
+                <code>/* END OF FILE *//* END OF FILE *//* END OF FILE */
+                <br><br><br><br>
+                </code>
+                    <code>
+
+                /* START app.js (JPA Repository class) */
+<br>
+</code>
+
+
+
+
+            </li>
+            <li>
+            <code>
+                var app = angular.module(&quot;app&quot;, [<br>
+                'ngRoute',<br>
+                'Controllers',<br>
+                'app.services'<br>
+                ]);<br>
+                <br>
+                app.filter('capitalize', function() {<br>
+                return function(input) {<br>
+                return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1) : '';<br>
+                }<br>
+                });<br>
+                <br>
+                app.filter('lower', function() {<br>
+                return function(input) {<br>
+                return (!!input) ? input.charAt(0).toLowerCase() + input.substr(1).toLowerCase() : '';<br>
+                }<br>
+                });
+            </code>
+
+
+            <br><br>
+            <code>/* END OF FILE *//* END OF FILE *//* END OF FILE */</code>
+            <br><br><br><br>
+                <code>
+                    /* START index.html */
+                    <br>
+                </code>
+               value-->
+
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller='ProjectController'>
+<title>Title</title>
+<meta charset="utf-8">
+
+<script>document.write('<base href="' + document.location + '" />');</script>
+
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://use.fontawesome.com/1bd5117720.js"></script>
+<!--<link rel="stylesheet" ng-href="{{ui}}">-->
+<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+<!-- jQuery CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- /jQuery CDN-->
+
+<!-- Angular CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-route.min.js"></script>
+<!-- /Angular CDN-->
+
+<!-- Bootstrap CDN-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- /Bootstrap CDN-->
+
+<!-- Angular App -->
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+<!-- /Angular App -->
+
+</head>
+<body>
+<div>
+    <div id="nav" ng-include src="'partials/nav.html'"></div>
+    <br>
+<button class="btn btn-primary" ng-click="preview()">Project Summary</button>
+    <button class="btn btn-primary" ng-click="toggleServices()">Toggle Services</button>
+    <div class="container" id="container">
+        <br>
+        <div class="row">
+            <div id="details-container" class="col-sm-9" ng-include src="'partials/project/project-details.html'"></div>
+        </div>
+        <row class="preview">
+        <div ng-include src="'partials/file-previews/services-dot-js.html'" ng-show="showServices" ng-hide="!showServices"></div>
+        </row>
+        <div class-="row">
+            <div ng-include src="'partials/file-previews/controllers-dot-js.html'"></div>
+        </div>
+        <div class="row">
+            <div id="projectInfo" ng-include src="'partials/project/full-project-info.html'"></div>
+        </div>
+        <div ng-include src="'partials/project/edit-project-form.html'"></div>
+        <div ng-include src="'partials/project/new-project-form.html'"></div>
+            <div ng-include src="'partials/entity/new-entity-form.html'"></div>
+            <div ng-include src="'partials/entity/edit-entity-form.html'"></div>
+        <div ng-include src="'partials/property/edit-property-modal.html'"></div>
+        <div ng-include src="'partials/property/new-property-modal.html'"></div>
+        <div ng-include src="'partials/project/project-summary.html'"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
